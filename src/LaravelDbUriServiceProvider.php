@@ -41,7 +41,6 @@ class LaravelDbUriServiceProvider extends ServiceProvider
     array_walk($this->config_map, function($config_key, $components_key) use($components, $connection){
       config(["database.connections.{$connection}.{$config_key}" => $this->clean($components_key, $components[$components_key])]);
     });
-    var_dump(config("database.connections.{$connection}"));
 
   }
 
