@@ -30,4 +30,4 @@ Add a `DATABASE_URL` entry to your `.env` or server environment with a URI to yo
 This is meant to help prevent the need for manually parsing database URIs that come from Heroku or are just more convenient
 to use than manually parsing a URI into it's host, password, username, port, (etc.) components.
 
-It __will__ overwrite your individual environment variables such as: `DB_HOST`, `DB_USERNAME`, etc..
+This __will overwrite__ any default database configs set off of environment variables such as: `DB_HOST`, `DB_USERNAME`, etc..
