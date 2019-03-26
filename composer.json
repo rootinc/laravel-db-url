@@ -1,6 +1,6 @@
 {
     "name": "rootinc/laravel-db-uri",
-    "description": "Translates a database URI into environment variables.",
+    "description": "Translates a database URI into database config values.",
     "type": "library",
     "require": {
         "php": "^7.1.3",
