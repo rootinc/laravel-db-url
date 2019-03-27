@@ -32,20 +32,34 @@ class LaravelDbUriServiceProvider extends ServiceProvider
    */
   public function register()
   {
-    // Only operates on database set as `default`
-    $connection = config('database.default');
+    $this->publishes([
+      __DIR__.'/config/db-uri.php' => config_path('db-uri.php')
+    ], 'db-uri');
 
-    // Get the DATABASE_URL env value or skip out
-    if(empty($url = env('DATABASE_URL'))) return;
+    $this->mergeConfigFrom(
+      __DIR__.'/config/db-uri.php', 'db-uri'
+    );
 
-    // Try to parse it
-    if(!$components = parse_url($url)) throw new \Exception('Database URL may be malformed.');
+    // All driver/connection mappings from config
+    $connections = config('db-uri');
 
-    // Set each config
-    array_walk($this->config_map, function($config_key, $components_key) use($components, $connection){
-      config(["database.connections.{$connection}.{$config_key}" => $this->clean($components_key, $components[$components_key])]);
-    });
+    // Loop and set each connection
+    foreach($connections as $driver => $connection_key) {
 
+      // If "default" driver, look up the value for the actual connection
+      $driver = $driver === 'default' ? config("database.{$driver}") : $driver;
+
+      // Get the DATABASE_URL env value or skip out
+      if(empty($url = env($connection_key))) return;
+
+      // Try to parse it
+      if(!$components = parse_url($url)) throw new \Exception('Database URL may be malformed.');
+
+      // Set each config
+      array_walk($this->config_map, function($config_key, $component_key) use($components, $driver){
+        config(["database.connections.{$driver}.{$config_key}" => $this->clean($component_key, $components[$component_key])]);
+      });
+    }
   }
 
   /**

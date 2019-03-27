@@ -1,6 +1,11 @@
 # laravel-db-uri
 Package to translate a database URI into database config values.
 
+This is meant to help prevent the need for manually parsing database URIs that come from Heroku or are just more convenient
+to use than manually parsing a URI into it's host, password, username, port, (etc.) components.
+
+This __will overwrite__, at runtime, any default database configs set off of environment variables such as: `DB_HOST`, `DB_USERNAME`, etc..
+
 __THIS PACKAGE HAS NOT BEEN RELEASED PUBLICLY AND CANNOT YET BE INSTALLED VIA COMPOSER WITHOUT ROOTINC REPO ACCESS__ 
 
 ## Requirements
@@ -23,11 +28,24 @@ __THIS PACKAGE HAS NOT BEEN RELEASED PUBLICLY AND CANNOT YET BE INSTALLED VIA CO
 `$ composer require rootinc/laravel-db-uri`
 You may, then, need to authenticate to Github at the command line.
 
+
 ## Configuration
+The package will automatically map the `default` driver to the environment variable `DATABASE_URL`.
+
 Add a `DATABASE_URL` entry to your `.env` or server environment with a URI to your default database.
 `DATABASE_URL=postgresql://username:password@localhost:5432/database-name`
 
-This is meant to help prevent the need for manually parsing database URIs that come from Heroku or are just more convenient
-to use than manually parsing a URI into it's host, password, username, port, (etc.) components.
 
-This __will overwrite__ any default database configs set off of environment variables such as: `DB_HOST`, `DB_USERNAME`, etc..
+#### Customization
+Override that by publishing the config file and setting it's values.
+
+`php artisan vendor:publish -vvv --tag=db-uri`
+
+```
+// config/db-uri.php
+return [
+  'redis' => 'SOMEREDIS_URL',
+  'mysql' => 'SOMEMYSQL_URL',
+];
+```
+
