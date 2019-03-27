@@ -1,6 +1,7 @@
 {
     "name": "rootinc/laravel-db-uri",
-    "description": "Translates a database URI into database config values.",
+    "description": "Translates a database URI into Laravel database driver values.",
+    "keywords": ["php", "laravel", "database", "env"],
     "type": "library",
     "require": {
         "php": "^7.1.3",
@@ -9,7 +10,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Jared Rosenberg",
+            "name": "Root Inc.",
             "email": "jrosenberg@rootinc.com"
         }
     ],
