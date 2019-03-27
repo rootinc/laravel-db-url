@@ -39,9 +39,9 @@ This will overwrite database connection values for `host`, `port`, `username`, `
 
 
 #### Customization
-Override that by publishing the config file and setting it's values.
+Override that by publishing the config file and setting it's values in `config/db-uri.php`.
 
-`php artisan vendor:publish -vvv --tag=db-uri`
+`php artisan vendor:publish --tag=db-uri`
 
 ```
 // config/db-uri.php
