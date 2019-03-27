@@ -47,7 +47,7 @@ class LaravelDbUriServiceProvider extends ServiceProvider
     foreach($connections as $driver => $connection_key) {
 
       // If "default" driver, look up the value for the actual connection
-      $driver = $driver === 'default' ? config("database.{$driver}") : $driver;
+      $driver = $driver === 'default' ? config('database.default') : $driver;
 
       // Get the DATABASE_URL env value or skip out
       if(empty($url = env($connection_key))) return;
