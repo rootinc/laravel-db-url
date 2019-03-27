@@ -1,5 +1,5 @@
 # Laravel Database URI
-Drop-in package to translate a database URI into database config values. No need to add logic to your
+Drop-in package to translate a database URI into database config values. No more need to add logic to your
 `config/database.php` file.
 
 This is meant to help prevent the need for manually parsing database URIs, like the ones that come from Heroku or AWS.
