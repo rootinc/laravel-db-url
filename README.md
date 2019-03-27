@@ -25,7 +25,7 @@ Add a `DATABASE_URL` entry to your `.env` or server environment with a URI to yo
 This will overwrite database connection values for `host`, `port`, `username`, `password`, and `database`
 
 
-#### Customization
+## Customization
 Override that by publishing the config file and setting it's values in `config/db-uri.php`.
 
 `php artisan vendor:publish --tag=db-uri`
