@@ -1,5 +1,6 @@
-# laravel-db-uri
-Package to translate a database URI into database config values.
+# Laravel Database URI
+Drop-in package to translate a database URI into database config values. No need to add logic to your
+`config/database.php` file.
 
 This is meant to help prevent the need for manually parsing database URIs, like the ones that come from Heroku or AWS.
 to use than manually parsing a URI into it's host, password, username, port, (etc.) components.
@@ -31,8 +32,8 @@ Override that by publishing the config file and setting it's values in `config/d
 ```
 // config/db-uri.php
 return [
-  'redis' => 'SOME_REDIS_URL',
-  'mysql' => 'SOME_MYSQL_URL',
+  'default' => 'DATABASE_URL', // default
+  'mysql' => 'OTHER_MYSQL_URL', // custom override for the mysql driver
 ];
 ```
 
