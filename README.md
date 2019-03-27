@@ -3,7 +3,8 @@ Drop-in package to translate a database URI into database config values. No more
 `config/database.php` file.
 
 This is meant to help prevent the need for manually parsing database URIs, like the ones that come from Heroku or AWS.
-to use than manually parsing a URI into it's host, password, username, port, (etc.) components.
+It will take a URI and assign host, password, username, port, (etc.) components to the default driver or
+specific driver(s) of your choosing.
 
 This __will override__, at runtime, any `default` database connection values for `host`, `port`, `username`, `password`, and `database`
 
