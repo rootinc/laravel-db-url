@@ -56,9 +56,9 @@ class LaravelDbUriServiceProvider extends ServiceProvider
       if(!$components = parse_url($url)) throw new \Exception('Database URL may be malformed.');
 
       // Set each config
-      array_walk($this->config_map, function($config_key, $component_key) use($components, $driver){
+      foreach($this->config_map as $component_key => $config_key) {
         config(["database.connections.{$driver}.{$config_key}" => $this->clean($component_key, $components[$component_key])]);
-      });
+      }
     }
   }
 
