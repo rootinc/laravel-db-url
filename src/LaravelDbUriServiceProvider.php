@@ -44,10 +44,11 @@ class LaravelDbUriServiceProvider extends ServiceProvider
     $connections = config('db-uri');
 
     // Loop and set each connection
-    foreach($connections as $driver => $connection_key) {
+    foreach($connections as $driver_path => $connection_key) {
 
       // If "default" driver, look up the value for the actual connection
-      $driver = $driver === 'default' ? config('database.default') : $driver;
+      // "default" resolves to something like "connections.pgsql"
+      $driver_path = $driver_path === 'default' ? 'connections.' . config('database.default') : $driver_path;
 
       // Get the DATABASE_URL env value or skip out
       if(empty($url = env($connection_key))) continue;
@@ -59,7 +60,7 @@ class LaravelDbUriServiceProvider extends ServiceProvider
       foreach($this->config_map as $component_key => $config_key) {
         // Skip setting when no value
         if(empty($components[$component_key])) continue;
-        config(["database.connections.{$driver}.{$config_key}" => $this->clean($component_key, $components[$component_key])]);
+        config(["database.{$driver_path}.{$config_key}" => $this->clean($component_key, $components[$component_key])]);
       }
     }
   }
