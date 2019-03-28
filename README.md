@@ -26,15 +26,25 @@ This will overwrite database connection values for `host`, `port`, `username`, `
 
 
 ## Customization
-Override that by publishing the config file and setting it's values in `config/db-uri.php`.
+Override default behaviour by publishing the config file and setting values.
 
-`php artisan vendor:publish --tag=db-uri`
+`$ php artisan vendor:publish --tag=db-uri`
 
+Set any database connections by supplying `default` or the key path, like `connections.pgsql`, or `redis`
+to have a URL mapped onto the connection at that key path.
+
+config/db-uri.php
 ```
-// config/db-uri.php
 return [
-  'default' => 'DATABASE_URL', // default
-  'mysql' => 'OTHER_MYSQL_URL', // custom override for the mysql driver
+  'default' => 'SOME_DATABASE_URL', // "default" resolves key path from default key
+  'connections.pgsql' => 'OTHER_PGSQL_URL', // Set the "pgsql" driver with different URL. Same when "default" set to "pgsql"
+  'connections.mysql' => 'OTHER_MYSQL_URL', // Set the "mysql" driver with different URL
 ];
 ```
+.env
+```
+DATABASE_URL=postgresql://username:password@localhost:5432/database-name
+OTHER_MYSQL_URL=mysql://username:password@localhost:3306/db_example
+```
+
 
