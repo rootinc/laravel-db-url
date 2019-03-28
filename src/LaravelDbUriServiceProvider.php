@@ -50,13 +50,15 @@ class LaravelDbUriServiceProvider extends ServiceProvider
       $driver = $driver === 'default' ? config('database.default') : $driver;
 
       // Get the DATABASE_URL env value or skip out
-      if(empty($url = env($connection_key))) return;
+      if(empty($url = env($connection_key))) continue;
 
       // Try to parse it
       if(!$components = parse_url($url)) throw new \Exception('Database URL may be malformed.');
 
       // Set each config
       foreach($this->config_map as $component_key => $config_key) {
+        // Skip setting when no value
+        if(empty($components[$component_key])) continue;
         config(["database.connections.{$driver}.{$config_key}" => $this->clean($component_key, $components[$component_key])]);
       }
     }
