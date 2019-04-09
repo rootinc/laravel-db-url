@@ -1,10 +1,10 @@
 <?php
 
-namespace Rootinc\LaravelDbUri;
+namespace Rootinc\LaravelDbUrl;
 
 use Illuminate\Support\ServiceProvider;
 
-class LaravelDbUriServiceProvider extends ServiceProvider
+class LaravelDbUrlServiceProvider extends ServiceProvider
 {
 
   /**
@@ -33,15 +33,15 @@ class LaravelDbUriServiceProvider extends ServiceProvider
   public function register()
   {
     $this->publishes([
-      __DIR__.'/config/db-uri.php' => config_path('db-uri.php')
-    ], 'db-uri');
+      __DIR__.'/config/db-url.php' => config_path('db-url.php')
+    ], 'db-url');
 
     $this->mergeConfigFrom(
-      __DIR__.'/config/db-uri.php', 'db-uri'
+      __DIR__.'/config/db-url.php', 'db-url'
     );
 
     // All driver/connection mappings from config
-    $connections = config('db-uri');
+    $connections = config('db-url');
 
     // Loop and set each connection
     foreach($connections as $driver_path => $connection_key) {

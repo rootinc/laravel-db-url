@@ -1,6 +1,6 @@
 {
-    "name": "rootinc/laravel-db-uri",
-    "description": "Translates a database URI into Laravel database driver values.",
+    "name": "rootinc/laravel-db-url",
+    "description": "Translates a database URL into Laravel database driver values.",
     "keywords": ["php", "laravel", "database", "env"],
     "type": "library",
     "require": {
@@ -16,13 +16,13 @@
     ],
     "autoload": {
         "psr-4": {
-            "RootInc\\LaravelDbUri\\": "src/"
+            "RootInc\\LaravelDbUrl\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "RootInc\\LaravelDbUri\\LaravelDbUriServiceProvider"
+                "RootInc\\LaravelDbUrl\\LaravelDbUrlServiceProvider"
             ]
         }
     },
