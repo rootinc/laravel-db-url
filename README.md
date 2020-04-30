@@ -8,10 +8,11 @@ specific driver(s) of your choosing.
 
 This __will override__, at runtime, any `default` database connection values for `host`, `port`, `username`, `password`, and `database`
 
+> Laravel 5.8+ supports Database URL config officially. See [Laravel Database Config](https://laravel.com/docs/5.8/database#configuration).
+
 ## Requirements
-(package will likely work with prior versions of Laravel and PHP but is untested)
 - PHP >= 7.1.3
-- Laravel >= 5.6
+- Laravel 5.6 or 5.7
 
 ## Installation
 `$ composer require rootinc/laravel-db-url`
